@@ -8,10 +8,10 @@ export default function createRouter() {
     routes: [
       {
         path: '/home',
-        component: () => import('../views/Home')
+        component: () => import('../pages/Home')
       }, {
         path: '/other',
-        component: () => import('../views/Other')
+        component: () => import('../pages/Other')
       }, {
         path: '/',
         redirect: '/home'
