@@ -4,9 +4,7 @@
   "description": "vue服务端渲染demo（vue-server-renderer）",
   "main": "./src/server.js",
   "scripts": {
-    "server": "server",
-    "client": "server",
-    "start": ""
+    "start": "node ./src/server.js"
   },
   "repository": {
     "type": "git",
@@ -43,7 +41,9 @@
     "url-loader": "^1.1.1",
     "vue-loader": "^15.4.1",
     "vue-style-loader": "^4.1.2",
-    "vue-template-compiler": "^2.5.17"
+    "vue-template-compiler": "^2.5.17",
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.0"
   },
   "engines": {
     "node": ">= 10.8.0",
