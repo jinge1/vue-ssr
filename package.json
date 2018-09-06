@@ -5,7 +5,8 @@
   "main": "./src/server.js",
   "scripts": {
     "server": "webpack --config ./webpack/webpack.server.js --progress",
-    "start": "npm run server && node ./src/server.js"
+    "client": "webpack --config ./webpack/webpack.client.js --progress",
+    "start": "npm run server && npm run client && node ./src/server.js"
   },
   "repository": {
     "type": "git",

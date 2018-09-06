@@ -2,11 +2,17 @@
 const serverRenderer = require('vue-server-renderer')
 const express = require('express')
 const nodeApp = express()
+const path = require('path')
 
 // 注意这里的default
 const createApp = require('../dist/server-bundle.js')['default']
 
 const renderer = serverRenderer.createRenderer()
+
+const distDir = path.join(__dirname, '..', 'dist')
+nodeApp.use('/', express.static(distDir))
+
+const clientBundleFileUrl = '/bundle.client.js'
 
 
 // 模拟接口请求部分
@@ -21,6 +27,7 @@ nodeApp.get('/api/getOtherInfo', (req, res) => {
 nodeApp.get('*', function(req, res) {
   const context = { url: req.url }
   createApp(context).then(app => {
+    let state = JSON.stringify(context.state)
     renderer.renderToString(app, (err, html) => {
       if (err) {
         if (err.code === 404) {
@@ -35,6 +42,8 @@ nodeApp.get('*', function(req, res) {
                 <head>
                     <meta charset="UTF-8">
                     <title>服务端数据渲染（vuex）的实现</title>
+                    <script>window.__INITIAL_STATE__ = ${state}</script>
+                    <script src="${clientBundleFileUrl}"></script>
                 </head>
                 <body>
                     ${html}

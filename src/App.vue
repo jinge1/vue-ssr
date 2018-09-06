@@ -1,5 +1,5 @@
 <template>
-<div id="app">
+<div id="app" class="vue-app">
   <h1>vue服务端渲染demo</h1>
   <h2>router的实现</h2>
   <ul class="nav">
@@ -15,4 +15,8 @@
 </template>
 
 <style>
+.vue-app{
+  padding:20px;
+  line-height:2.5em;
+}
 </style>
