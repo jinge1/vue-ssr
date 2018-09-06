@@ -1,0 +1,41 @@
+{
+  "env": {
+    "browser": true,
+    "node": true,
+    "commonjs": true,
+    "es6": true,
+    "amd": true
+  },
+  "globals": {
+    "wx": false
+  },
+  "plugins": [
+    "html"
+  ],
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "script",
+    "ecmaFeatures": {
+      "globalReturn": true,
+      "impliedStrict": true,
+      "jsx": false
+    },
+    "sourceType": "module"
+  },
+  "rules": {
+    "indent": [1, 2],
+    "no-console": 0,
+    "no-debugger": 0,
+    "no-unused-vars": 1,
+    "linebreak-style": 0,
+    "quotes": [
+      1,
+      "single"
+    ],
+    "semi": [
+      1,
+      "never"
+    ]
+  }
+}
