@@ -8,6 +8,16 @@ const createApp = require('../dist/server-bundle.js')['default']
 
 const renderer = serverRenderer.createRenderer()
 
+
+// 模拟接口请求部分
+nodeApp.get('/api/getHomeInfo', (req, res) => {
+  res.send('getHomeInfo -- 来自接口')
+})
+
+nodeApp.get('/api/getOtherInfo', (req, res) => {
+  res.send('getOtherInfo -- 来自接口')
+})
+
 nodeApp.get('*', function(req, res) {
   const context = { url: req.url }
   createApp(context).then(app => {
@@ -24,7 +34,7 @@ nodeApp.get('*', function(req, res) {
             <html lang="en">
                 <head>
                     <meta charset="UTF-8">
-                    <title>server端router的实现</title>
+                    <title>服务端数据渲染（vuex）的实现</title>
                 </head>
                 <body>
                     ${html}

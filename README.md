@@ -1,39 +1,47 @@
 # vue服务端渲染demo（vue-server-renderer）
 
-## 服务端router的实现
+## 服务端数据渲染（vuex）的实现
 
 ### step1
-#### webpack配置
-*服务端引入webpack，主要是方便后续客户端与服务端可共用同一套代码*
-*注意服务端webpack配置：*
-* target: 'node'
-* output: {libraryTarget: commonjs2}
-
+*配置store，如“src/store/index.js”*
 
 ### step2
-* 设置路由模式mode为 history
-* 根据访问url切换到对应路由
+### 组件接口请求方法serverRequest配置
 ```
-// src/entry/entry-server.js
-router.push(context.url)
+// src/pages/Home.vue
+serverRequest(store) {
+  return store.dispatch('getHomeInfo')
+}
 ```
 
 ### step3
-* server文件中引入createApp
+*切换路由组件时，调用serverRequest方法请求数据*
+// src/entry/entry-server.js
 ```
-// src/server.js
-// 注意这里的default
-const createApp = require('../dist/server-bundle.js')['default']
+if (component.serverRequest) {
+  return component.serverRequest(store)
+}
 ```
 
 ### step4
-* webpack打包server
-```
-npm run server
-```
+*main.js文件中整合vuex代码*
 
 ### step5
-* server启动（包含step4的动作）
+*新增接口请求数据处理*
+```
+// src/server.js
+// 模拟接口请求部分
+nodeApp.get('/api/getHomeInfo', (req, res) => {
+  res.send('getHomeInfo -- 来自接口')
+})
+
+nodeApp.get('/api/getOtherInfo', (req, res) => {
+  res.send('getOtherInfo -- 来自接口')
+})
+```
+
+### step6
+*启动服务*
 ```
 npm start
 ```
