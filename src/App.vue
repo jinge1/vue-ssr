@@ -11,6 +11,9 @@
     </li>
   </ul>
   <router-view class="view"></router-view>
+  <!-- # 参考案例
+  * https://www.jianshu.com/p/c6a07755b08d
+  * https://ssr.vuejs.org/zh/guide/hydration.html -->
 </div>
 </template>
 
